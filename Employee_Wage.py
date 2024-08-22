@@ -32,23 +32,3 @@ if __name__=="__main__":
 
 
     
-# import random
-# class Employee:
-#     def check_attendence(self):
-#         """
-#         Description:
-#             """
-#         value=random.choice([0,1])
-#         return value
-
-#     def main(self):
-#         attendance=self.check_attendence()
-#         if attendance==1:
-#             print("Employee is Present")
-#         else:
-#             print("Employee is absent")
-    
-# if __name__=="__main__":
-#         employee1=Employee()
-#         employee1.main()
-
