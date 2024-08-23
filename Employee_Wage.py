@@ -55,6 +55,14 @@ def partTime_wage(attendance):
         return 0
     
 def monthly_wage():
+    """
+    Description:
+        This Program will give a employee wages for a month
+    Parameter:
+        None
+    Return:
+        this function will return a monthely wages
+    """
     total_wage=0
     for i in range(MONTHLY_WORKING_DAYS):
         attendence=check_attendance()
@@ -72,9 +80,7 @@ def monthly_wage():
 
 def main():
 
-    
-    result=monthly_wage()
-    print(f"Monthly wages for employee is {result}")
+    print(f"Wages for month : {monthly_wage()}")
     
 
 if __name__=="__main__":
