@@ -13,6 +13,7 @@ import random
 WAGE_PER_HOUR=20
 DAILY_HOUR=8
 PART_TIME_HOUR=4
+MONTHLY_WORKING_DAYS=20
 
 def check_attendance():
     """
@@ -53,21 +54,27 @@ def partTime_wage(attendance):
     else:
         return 0
     
-    
+def monthly_wage():
+    total_wage=0
+    for i in range(MONTHLY_WORKING_DAYS):
+        attendence=check_attendance()
+        if attendence==1:
+            total_wage+=daily_wage(attendence)
+        elif attendence==0.5:
+            total_wage+=partTime_wage(attendence)
+        else:
+            total_wage+=0
+
+    return total_wage
+
+
+
 
 def main():
 
-    attendance=check_attendance()
-
-    match attendance:
-        case 1:
-            print(f"employee is present and his daily wage is {daily_wage(attendance)}")
-
-        case 0.5:
-            print(f"employee is present for part time and his part time wage is {partTime_wage(attendance)}")
-        
-        case 0:
-            print(f"employee is absent and his wage is {0}")
+    
+    result=monthly_wage()
+    print(f"Monthly wages for employee is {result}")
     
 
 if __name__=="__main__":
