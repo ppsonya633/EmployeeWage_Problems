@@ -13,10 +13,14 @@ import random
 WAGE_PER_HOUR=20
 DAILY_HOUR=8
 PART_TIME_HOUR=4
+
+
 def check_attendance():
     """
     Description:
         this function is used for check attendance based on values 1 and 0
+    Parameter:
+        None
     Return:
         it will return a number randomely either 1 or 0
     """
@@ -24,7 +28,8 @@ def check_attendance():
     attendance=random.choice([0,0.5,1])
     return attendance
 
-def daily_wage(attendance):
+
+def daily_wage():
     """
     Description:
         This function gives an daily wage on employee
@@ -32,12 +37,10 @@ def daily_wage(attendance):
         it will return an daily wage of employee
     """
 
-    if attendance==1:
-        return WAGE_PER_HOUR*DAILY_HOUR
-    else:
-        return 0
+    return WAGE_PER_HOUR*DAILY_HOUR
     
-def partTime_wage(attendance):
+
+def partTime_wage():
     """
     Description:
         This Program gives the part time wages of the employee
@@ -47,17 +50,16 @@ def partTime_wage(attendance):
         it will return an parttime wage of the employee
     """
     
-    if attendance==0.5:
-        return WAGE_PER_HOUR*PART_TIME_HOUR
+    return WAGE_PER_HOUR*PART_TIME_HOUR
     
     
 
 def main():
     attendance=check_attendance()
     if attendance==1:
-        print(f"Employee is Present and his Daily wage is {daily_wage(attendance)}rs")
+        print(f"Employee is Present and his Daily wage is {daily_wage()}rs")
     elif attendance==0.5:
-        print(f"Employee is Present for part time and his Part time wage is {partTime_wage(attendance)}")
+        print(f"Employee is Present for part time and his Part time wage is {partTime_wage()}")
     else:
         print(f"Employee is absent and his daily wage is {0}rs")
 
