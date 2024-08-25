@@ -115,7 +115,7 @@ def wages_ReachedForMonth():
 
 def main():
 
-    print(f"Wages for employee when working hour or days reached for month : {wages_ReachedForMonth()}")
+    print(f"Wages for employee when working hour or days reached for month: {wages_ReachedForMonth()}")
     
 
 if __name__=="__main__":
