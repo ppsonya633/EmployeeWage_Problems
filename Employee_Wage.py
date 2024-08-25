@@ -63,6 +63,7 @@ def monthly_wage():
     Return:
         this function will return a monthely wages
     """
+
     total_wage=0
     for i in range(MONTHLY_WORKING_DAYS):
         attendence=check_attendance()
@@ -75,12 +76,44 @@ def monthly_wage():
 
     return total_wage
 
+def wagesfor_condition():
+    """
+    Description:
+        This Program gives a wages until employee complete 100 working hours or 20 working days
+    Parameter:
+        None
+    Return:
+        if one of the condition is true then it will give an result
+    """
 
+    working_hour=0
+    working_days=0
+    total_wage=0
+
+    while working_hour<100 or working_days<20:
+        attendence=check_attendance()
+
+        if attendence==1:
+            working_hour+=DAILY_HOUR
+            working_days+=1
+            total_wage+=daily_wage(attendence)
+
+        elif attendence==0.5:
+            working_hour+=PART_TIME_HOUR
+            working_days+=1
+            total_wage+=partTime_wage(attendence)
+
+        else:
+            working_hour+=0
+            working_days+=1
+            total_wage+=0
+
+    return total_wage
 
 
 def main():
 
-    print(f"Wages for month : {monthly_wage()}")
+    print(f"Wages for given condition : {wagesfor_condition()}")
     
 
 if __name__=="__main__":
