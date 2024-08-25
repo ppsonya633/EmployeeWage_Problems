@@ -9,8 +9,12 @@
 '''
 
 import random
-wage_per_hour=20
-daily_hour=8
+
+
+WAGE_PER_HOUR=20
+DAILY_HOUR=8
+
+
 def check_attendance():
     """
     Description:
@@ -18,10 +22,12 @@ def check_attendance():
     Return:
         it will return a number randomely either 1 or 0
     """
+
     attendance=random.choice([0,1])
     return attendance
 
-def daily_wage(attendance):
+
+def daily_wage():
     """
     Description:
         This function gives an daily wage on employee
@@ -30,18 +36,19 @@ def daily_wage(attendance):
     Return:
         it will return an daily wage of employee
     """
-    if attendance==1:
-        return wage_per_hour*daily_hour
-    else:
-        return 0
+
+    return WAGE_PER_HOUR*DAILY_HOUR
+    
+
 
 def main():
     attendance=check_attendance()
-    wage=daily_wage(attendance)
+    
     if attendance==1:
-        print(f"Employee is Present and his Daily wage is {wage}rs")
+        print(f"Employee is Present and his Daily wage is {daily_wage()}rs")
     else:
         print(f"Employee is absent and his daily wage is {0}rs")
+
 
 if __name__=="__main__":
     main()
