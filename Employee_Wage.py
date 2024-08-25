@@ -10,9 +10,11 @@
 
 import random
 
+
 WAGE_PER_HOUR=20
 DAILY_HOUR=8
 PART_TIME_HOUR=4
+
 
 def check_attendance():
     """
@@ -25,7 +27,8 @@ def check_attendance():
     attendance=random.choice([0,0.5,1])
     return attendance
 
-def daily_wage(attendance):
+
+def daily_wage():
     """
     Description:
         This function gives an daily wage on employee
@@ -33,12 +36,10 @@ def daily_wage(attendance):
         it will return an daily wage of employee
     """
 
-    if attendance==1:
-        return WAGE_PER_HOUR*DAILY_HOUR
-    else:
-        return 0
+    return WAGE_PER_HOUR*DAILY_HOUR
     
-def partTime_wage(attendance):
+
+def partTime_wage():
     """
     Description:
         This Program gives the part time wages of the employee
@@ -48,23 +49,19 @@ def partTime_wage(attendance):
         it will return an parttime wage of the employee
     """
     
-    if attendance==0.5:
-        return WAGE_PER_HOUR*PART_TIME_HOUR
-    else:
-        return 0
+    return WAGE_PER_HOUR*PART_TIME_HOUR
     
     
-
 def main():
 
     attendance=check_attendance()
 
     match attendance:
         case 1:
-            print(f"employee is present and his daily wage is {daily_wage(attendance)}")
+            print(f"employee is present and his daily wage is {daily_wage()}")
 
         case 0.5:
-            print(f"employee is present for part time and his part time wage is {partTime_wage(attendance)}")
+            print(f"employee is present for part time and his part time wage is {partTime_wage()}")
         
         case 0:
             print(f"employee is absent and his wage is {0}")
