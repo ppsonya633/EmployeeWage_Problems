@@ -67,9 +67,9 @@ def monthly_wage():
     for i in range(MONTHLY_WORKING_DAYS):
         attendence=check_attendance()
         if attendence==1:
-            total_wage+=daily_wage(attendence)
+            total_wage+=daily_wage()
         elif attendence==0.5:
-            total_wage+=partTime_wage(attendence)
+            total_wage+=partTime_wage()
         else:
             total_wage+=0
 
