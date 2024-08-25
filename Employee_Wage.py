@@ -10,10 +10,12 @@
 
 import random
 
+
 WAGE_PER_HOUR=20
 DAILY_HOUR=8
 PART_TIME_HOUR=4
 MONTHLY_WORKING_DAYS=20
+
 
 def check_attendance():
     """
@@ -26,7 +28,8 @@ def check_attendance():
     attendance=random.choice([0,0.5,1])
     return attendance
 
-def daily_wage(attendance):
+
+def daily_wage():
     """
     Description:
         This function gives an daily wage on employee
@@ -34,12 +37,10 @@ def daily_wage(attendance):
         it will return an daily wage of employee
     """
 
-    if attendance==1:
-        return WAGE_PER_HOUR*DAILY_HOUR
-    else:
-        return 0
+    return WAGE_PER_HOUR*DAILY_HOUR
+
     
-def partTime_wage(attendance):
+def partTime_wage():
     """
     Description:
         This Program gives the part time wages of the employee
@@ -49,11 +50,9 @@ def partTime_wage(attendance):
         it will return an parttime wage of the employee
     """
     
-    if attendance==0.5:
-        return WAGE_PER_HOUR*PART_TIME_HOUR
-    else:
-        return 0
+    return WAGE_PER_HOUR*PART_TIME_HOUR
     
+
 def monthly_wage():
     """
     Description:
@@ -76,14 +75,15 @@ def monthly_wage():
 
     return total_wage
 
-def wagesfor_condition():
+
+def wages_ReachedForMonth():
     """
     Description:
         This Program gives a wages until employee complete 100 working hours or 20 working days
     Parameter:
         None
     Return:
-        if one of the condition is true then it will give an result
+        gives a total wage of employee for one month when days or working hours got complete
     """
 
     working_hour=0
@@ -91,32 +91,32 @@ def wagesfor_condition():
     total_wage=0
 
     while working_hour<100 or working_days<20:
+
         attendence=check_attendance()
 
-        if attendence==1:
-            working_hour+=DAILY_HOUR
-            working_days+=1
-            total_wage+=daily_wage(attendence)
+        match attendence:
+            case 1:
+                working_hour+=DAILY_HOUR
+                working_days+=1
+                total_wage+=daily_wage()
 
-        elif attendence==0.5:
-            working_hour+=PART_TIME_HOUR
-            working_days+=1
-            total_wage+=partTime_wage(attendence)
+            case 0.5:
+                working_hour+=PART_TIME_HOUR
+                working_days+=1
+                total_wage+=partTime_wage()
 
-        else:
-            working_hour+=0
-            working_days+=1
-            total_wage+=0
+            case 0:
+                working_hour+=0
+                working_days+=1
+                total_wage+=0
 
     return total_wage
 
 
 def main():
 
-    print(f"Wages for given condition : {wagesfor_condition()}")
+    print(f"Wages for employee when working hour or days reached for month : {wages_ReachedForMonth()}")
     
 
 if __name__=="__main__":
     main()
-
-
