@@ -10,7 +10,9 @@
 
 import random
 
+
 class Employee:
+
     WAGE_PER_HOUR=20
     DAILY_HOUR=8
     PART_TIME_HOUR=4
