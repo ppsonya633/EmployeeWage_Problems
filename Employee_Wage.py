@@ -1,9 +1,9 @@
 '''
 
 @Author: Pratik Patil
-@Date: 2024-08-22
+@Date: 2024-08-27
 @Last Modified by: Pratik Patil
-@Last Modified time: 2024-08-22
+@Last Modified time: 2024-08-27
 @Title : Employee Wage Problems
 
 '''
@@ -11,120 +11,126 @@
 import random
 
 
-class Employee:
+class EmpWageBuilder:
 
-    WAGE_PER_HOUR=20
-    DAILY_HOUR=8
-    PART_TIME_HOUR=4
-    MONTHLY_WORKING_DAYS=20
+    def __init__(self,companey_name,wage_per_hour,daily_hours,part_time_hours,monthely_working_days,monthely_working_hours):
+        """
+        Initialize the EmpWageBuilder instance with company-specific data.
+        
+        :param company_name: Name of the company
+        :param wage_per_hour: Wage per hour for the company
+        :param daily_hours: Full-time daily working hours
+        :param part_time_hours: Part-time daily working hours
+        :param monthely_working_days: Maximum number of working days per month
+        :param monthely_working_hours: Maximum number of working hours per month
+        """
+        self.companey_name=companey_name
+        self.wage_per_hour=wage_per_hour
+        self.daily_hours=daily_hours
+        self.part_time_hours=part_time_hours
+        self.monthely_working_days=monthely_working_days
+        self.monthely_working_hours=monthely_working_hours
+        self.total_wage=0
+        self.total_working_days=0
+        self.total_working_hours=0
 
 
-    @classmethod
-    def check_attendance(cls):
+    def check_attendance(self):
         """
         Description:
-            this function is used for check attendance based on values 1 and 0
+            this functions returns a random number between 0,0.5,1 this three numbers
         Parameter:
             None
         Return:
-            it will return a number randomely either 1 or 0
+            Return a random number
         """
 
-        attendance=random.choice([0,0.5,1])
-        return attendance
+        return random.choice([0,0.5,1])
     
 
-    @classmethod
-    def daily_wage(cls):
+    def daily_wage(self):
         """
         Description:
-            This function gives an daily wage on employee
+            This function gives a employees daily wage
         Parameter:
             None
         Return:
-            it will return an daily wage of employee
+            it returns a employees daily wage
         """
-
-        return cls.WAGE_PER_HOUR*cls.DAILY_HOUR
-
     
-    @classmethod
-    def partTime_wage(cls):
-        """
-        Description:
-            This Program gives the part time wages of the employee
-        Parameter:
-            None
-        Return:
-            it will return an parttime wage of the employee
-        """
-
-        return cls.PART_TIME_HOUR*cls.WAGE_PER_HOUR
+        return self.daily_hours*self.wage_per_hour
     
 
-    @classmethod
-    def monthly_wage(cls):
+    def part_time_wage(self):
         """
         Description:
-            This Program will give a employee wages for a month
+            This function gives a employees part time wage
         Parameter:
             None
         Return:
-            this function will return a monthely wages
-        """
-
-        total_wage=0
-        for day in range(cls.MONTHLY_WORKING_DAYS):
-            attendence=cls.check_attendance()
-            if attendence==1:
-                total_wage+=cls.daily_wage()
-            elif attendence==0.5:
-                total_wage+=cls.partTime_wage()
-            else:
-                total_wage+=0
-
-        return total_wage
-    
-
-    @classmethod
-    def WagesFor_ComplitionOfHoursOrDaysForMonth(cls):
-        """
-        Description:
-            this function will gives a wages of employee when he completes the working hour or days in month
-        Parameter:
-            None
-        Return:
-            it will return wages when employees total monthly working hours or days get completed
+            it returns a employees part time wage
         """
         
-        working_hour=0
-        working_days=0
-        total_wage=0
+        return self.part_time_hours*self.wage_per_hour
+    
 
-        while working_hour<100 or working_days<20:
+    def companiesEmp_monthely_total_wage(self):
+        """
+        Description:
+            This function gives a employees monthely total wage
+        Parameter:
+            None
+        Return:
+            it returns a employees daily wage
+        """
+        
+        while self.total_working_days<self.monthely_working_days and self.total_working_hours<self.monthely_working_hours:
+            attendance=self.check_attendance()
 
-            attendence=cls.check_attendance()
+            match attendance:
 
-            match attendence:
                 case 1:
-                    working_hour+=cls.DAILY_HOUR
-                    working_days+=1
-                    total_wage+=cls.daily_wage()
+                    self.total_wage+=self.daily_wage()
+                    self.total_working_hours+=self.daily_hours
 
                 case 0.5:
-                    working_hour+=cls.PART_TIME_HOUR
-                    working_days+=1
-                    total_wage+=cls.partTime_wage()
+                    self.total_wage+=self.part_time_wage()
+                    self.total_working_hours+=self.part_time_hours
 
                 case 0:
-                    working_hour+=0
-                    working_days+=1
-                    total_wage+=0
+                    self.total_wage+=0
+                    self.total_working_hours+=0
 
-        return total_wage
+            self.total_working_days+=1
+
+        return self.total_wage,self.total_working_days,self.total_working_hours
+    
+    def display_details(self):
+        """
+        Description:
+            This Function will display the total wage,days and hours of a companey
+        Parameter:
+            None
+        Return
+            None
+        """
+
+        total_wage,total_days,total_hours=self.companiesEmp_monthely_total_wage()
+        print(f"{self.companey_name} - total wage is:{total_wage}")
+        print(f"{self.companey_name} - total days are:{total_days}")
+        print(f"{self.companey_name} - total hours are:{total_hours}")
 
 
-print(f"wages when employee complete his total working hours or days for month :{Employee.WagesFor_ComplitionOfHoursOrDaysForMonth()}")
-       
-        
+
+def main():
+    company1=EmpWageBuilder(companey_name="Apexon",wage_per_hour=50,daily_hours=8,part_time_hours=4,monthely_working_days=20,monthely_working_hours=200)
+    company1.companiesEmp_monthely_total_wage()
+    company1.display_details()
+
+    company2=EmpWageBuilder(companey_name="bridgeLabz",wage_per_hour=20,daily_hours=9,part_time_hours=5,monthely_working_days=27,monthely_working_hours=300)
+    company2.display_details()
+
+if __name__=="__main__":
+    main()
+
 
