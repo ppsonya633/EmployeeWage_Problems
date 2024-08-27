@@ -11,11 +11,11 @@
 import random
 
 
-class EmpWageBuilder:
+class CompanyEmpWage:
 
     def __init__(self,companey_name,wage_per_hour,daily_hours,part_time_hours,monthely_working_days,monthely_working_hours):
         """
-        Initialize the EmpWageBuilder instance with company-specific data.
+        Initialize the CompanyEmpWage instance with company-specific data.
         
         :param company_name: Name of the company
         :param wage_per_hour: Wage per hour for the company
@@ -121,14 +121,37 @@ class EmpWageBuilder:
         print(f"{self.companey_name} - total hours are:{total_hours}")
 
 
+class EmpWageBuilder:
+
+    def __init__(self):
+        self.companies=[]
+
+
+    def add_company(self,company_emp_wage):
+        """
+        Description:
+            This function will take object as a parameter and it will add into list
+        Parameter:
+            cmpany_emp_wage: the each companey object
+        Return:
+            None
+        """
+
+        self.companies.append(company_emp_wage)
+    
+
+    def display_all_companywage(self):
+        for company in self.companies:
+            company.display_details()
 
 def main():
-    company1=EmpWageBuilder(companey_name="Apexon",wage_per_hour=50,daily_hours=8,part_time_hours=4,monthely_working_days=20,monthely_working_hours=200)
-    company1.companiesEmp_monthely_total_wage()
-    company1.display_details()
-
-    company2=EmpWageBuilder(companey_name="bridgeLabz",wage_per_hour=20,daily_hours=9,part_time_hours=5,monthely_working_days=27,monthely_working_hours=300)
-    company2.display_details()
+    
+    test1=EmpWageBuilder()
+    company1=CompanyEmpWage(companey_name="apexon",wage_per_hour=1000,daily_hours=10,part_time_hours=5,monthely_working_days=25,monthely_working_hours=150)
+    company2=CompanyEmpWage(companey_name="bridgelabz",wage_per_hour=1000,daily_hours=12,part_time_hours=6,monthely_working_days=30,monthely_working_hours=210)
+    test1.add_company(company1)
+    test1.add_company(company2)
+    test1.display_all_companywage()
 
 if __name__=="__main__":
     main()
