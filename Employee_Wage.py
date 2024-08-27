@@ -122,9 +122,12 @@ class Employee:
                     total_wage+=0
 
         return total_wage
+    
 
+def main():   
+    print(f"wages when employee complete his total working hours or days for month :{Employee.WagesFor_ComplitionOfHoursOrDaysForMonth()}")
 
-print(f"wages when employee complete his total working hours or days for month :{Employee.WagesFor_ComplitionOfHoursOrDaysForMonth()}")
-       
+if __name__=="__main__":
+    main()    
         
 
