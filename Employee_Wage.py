@@ -76,7 +76,7 @@ def monthly_wage():
     return total_wage
 
 
-def wages_ReachedForMonth():
+def wagesTill_WorkungHourOrDaysCompleted():
     """
     Description:
         This Program gives a wages until employee complete 100 working hours or 20 working days
@@ -90,32 +90,35 @@ def wages_ReachedForMonth():
     working_days=0
     total_wage=0
 
-    while working_hour<100 or working_days<20:
+    while working_hour<100 and working_days<20:
 
         attendence=check_attendance()
 
         match attendence:
             case 1:
                 working_hour+=DAILY_HOUR
-                working_days+=1
                 total_wage+=daily_wage()
 
             case 0.5:
                 working_hour+=PART_TIME_HOUR
-                working_days+=1
                 total_wage+=partTime_wage()
 
             case 0:
                 working_hour+=0
-                working_days+=1
                 total_wage+=0
+        working_days+=1
 
-    return total_wage
+    return total_wage,working_days,working_hour
 
 
 def main():
 
-    print(f"Wages for employee when working hour or days reached for month: {wages_ReachedForMonth()}")
+    total_wage,total_days,total_hour=wagesTill_WorkungHourOrDaysCompleted()
+    print(f"Employee Total Wage is: {total_wage}")
+    print(f"Employee Total Working Days: {total_days}")
+    print(f"Employee Total Working Hour: {total_hour}")
+
+    
     
 
 if __name__=="__main__":
