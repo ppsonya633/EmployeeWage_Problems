@@ -168,6 +168,7 @@ class EmpWageBuilder:
         company = CompanyEmpWage(company_name, wage_per_hour, full_day_hour, part_time_hour, max_working_days, max_working_hours)
         self.company_list.append(company)
 
+
     def add_employees_to_company(self, company_name):
         """
         Description:
@@ -187,10 +188,12 @@ class EmpWageBuilder:
         else:
             print(f"Company {company_name} not found.")
 
+
     def compute_wages(self):
         for company in self.company_list:
             company.compute_wages_for_all_employees()
             company.print_employee_wages()
+
 
 def main():
     builder = EmpWageBuilder()
@@ -204,23 +207,24 @@ def main():
 
         choice = input("Enter your choice: ")
 
-        if choice == '1':
-            company_name = input("Enter company name: ")
-            wage_per_hour = int(input("Enter wage per hour: "))
-            full_day_hour = int(input("Enter full day hours: "))
-            part_time_hour = int(input("Enter part-time hours: "))
-            max_working_days = int(input("Enter maximum working days: "))
-            max_working_hours = int(input("Enter maximum working hours: "))
-            builder.add_company(company_name, wage_per_hour, full_day_hour, part_time_hour, max_working_days, max_working_hours)
-        elif choice == '2':
-            company_name = input("Enter the company name to add employees: ")
-            builder.add_employees_to_company(company_name)
-        elif choice == '3':
-            builder.compute_wages()
-        elif choice == '4':
-            break
-        else:
-            print("Invalid choice. Please try again.")
+        match choice:
+            case '1':
+                company_name = input("Enter company name: ")
+                wage_per_hour = int(input("Enter wage per hour: "))
+                full_day_hour = int(input("Enter full day hours: "))
+                part_time_hour = int(input("Enter part-time hours: "))
+                max_working_days = int(input("Enter maximum working days: "))
+                max_working_hours = int(input("Enter maximum working hours: "))
+                builder.add_company(company_name, wage_per_hour, full_day_hour, part_time_hour, max_working_days, max_working_hours)
+            case '2':
+                company_name = input("Enter the company name to add employees: ")
+                builder.add_employees_to_company(company_name)
+            case '3':
+                builder.compute_wages()
+            case '4':
+                break
+            case _:
+                print("Invalid choice. Please try again.")
 
 if __name__ == "__main__":
     main()
