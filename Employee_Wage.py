@@ -8,7 +8,9 @@
 
 import random
 
+
 class CompanyEmpWage:
+    
     def __init__(self, company_name, wage_per_hour, full_day_hour, part_time_hour, max_working_days, max_working_hours):
         """
         Initialize the CompanyEmpWage instance with company-specific data.
@@ -20,6 +22,7 @@ class CompanyEmpWage:
         :param max_working_days: Maximum number of working days per month
         :param max_working_hours: Maximum number of working hours per month
         """
+
         self.company_name = company_name
         self.wage_per_hour = wage_per_hour
         self.full_day_hour = full_day_hour
@@ -27,6 +30,7 @@ class CompanyEmpWage:
         self.max_working_days = max_working_days
         self.max_working_hours = max_working_hours
         self.total_wage = 0  # Instance variable to store total wage for the company
+
 
     def check_attendance(self):
         """
@@ -39,6 +43,7 @@ class CompanyEmpWage:
             int: Returns a random value of 0, 0.5, or 1 to represent absent, part-time, or full-time attendance, respectively.
         """
         return random.choice([0, 1, 2])
+
 
     def calculate_daily_wage(self):
         """
@@ -53,6 +58,7 @@ class CompanyEmpWage:
 
         return self.full_day_hour * self.wage_per_hour
 
+
     def calculate_part_time_wage(self):
         """
         Description:
@@ -65,6 +71,7 @@ class CompanyEmpWage:
         """
 
         return self.part_time_hour * self.wage_per_hour
+
 
     def compute_wages(self):
         """
@@ -96,6 +103,7 @@ class CompanyEmpWage:
 
         self.total_wage = total_wage
 
+
     def print_wages(self):
         """
         Description:
@@ -111,8 +119,10 @@ class CompanyEmpWage:
 
 
 class EmpWageBuilder:
+
     def __init__(self):
         self.company_list = []
+
 
     def add_company(self, company_name, wage_per_hour, full_day_hour, part_time_hour, max_working_days, max_working_hours):
         """
@@ -131,6 +141,7 @@ class EmpWageBuilder:
 
         company = CompanyEmpWage(company_name, wage_per_hour, full_day_hour, part_time_hour, max_working_days, max_working_hours)
         self.company_list.append(company)
+
 
     def compute_wages(self):
         """
